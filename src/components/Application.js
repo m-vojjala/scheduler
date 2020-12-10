@@ -19,7 +19,7 @@ export default function Application() {
  
 
   const setDay = day => setState({ ...state, day });
-  console.log(state.interviewers)
+  // console.log(state.interviewers)
 
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Application() {
         {dailyAppointments.map(appointment =>  
          {
            const interview = getInterview(state, appointment.interview);
-           return <Appointment key={appointment.id} {...appointment} />
+           return <Appointment key={appointment.id} {...appointment} interview={interview} />
          })}
         <Appointment key="last" time="5pm" />
       </section>
