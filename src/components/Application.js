@@ -12,11 +12,44 @@ export default function Application() {
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers:{}
+    interviewers:{},
   });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewersOfADay = getInterviewersForDay(state,state.day);
- 
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    //  console.log(appointment)
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    //  console.log(appointments)
+
+    return Axios.put(`api/appointments/${id}`, appointment)
+    .then(response=>setState({...state,appointments}))
+  
+  }
+
+  function cancelInterview(id){
+    const appointment = {
+      ...state.appointments[id],
+      interview:null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return Axios.delete(`api/appointments/${id}`)
+    .then(response=>setState({...state,appointments}))
+  
+  }
  
 
   const setDay = day => setState({ ...state, day });
@@ -53,7 +86,7 @@ export default function Application() {
         {dailyAppointments.map(appointment =>  
          {
            const interview = getInterview(state, appointment.interview);
-           return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewersOfADay}/>
+           return <Appointment key={appointment.id} {...appointment} interview={interview} interviewers={interviewersOfADay} bookInterview={bookInterview} cancelInterview={cancelInterview} />
          })}
         <Appointment key="last" time="5pm" />
       </section>

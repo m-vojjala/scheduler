@@ -21,7 +21,7 @@ export default function Form(props){
 
   const onSubmit = (event)=>{
     event.preventDefault();
-    props.onSave(interviewer,name);
+    props.onSave(name,interviewer);
     reset();
 
   }
