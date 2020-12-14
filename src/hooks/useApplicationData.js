@@ -17,15 +17,19 @@ const [state, setState] = useState({
       ...state.appointments,
       [id]: appointment
     };
+    let spotsCount = 0;
     const days= [...state.days];
-    const day = days.find(day=>day.name===state.day);
-   // console.log(day)
-    //  day.spots = day.appointments.reduce((acc,curr)=> acc += state.appointments[curr].interview ? 0 : 1 , 0)
-    //  console.log(day)
-      day.spots -= 1;
-     setState({...state,appointments,days})
+    const dayIndex = days.findIndex(day=>day.name===state.day);
+     days[dayIndex].appointments.forEach(appointmentId=>
+        {
+        if(!appointments[appointmentId].interview){
+          spotsCount += 1;
+        }
+        })
+        days[dayIndex].spots = spotsCount;
     return Axios.put(`api/appointments/${id}`, appointment)
     .then((response)=>setState({...state,appointments,days}))
+    
   }
   
   function cancelInterview(id){
@@ -38,9 +42,18 @@ const [state, setState] = useState({
       ...state.appointments,
       [id]: appointment
     };
+    let spotsCount = 0;
     const days= [...state.days];
-    const day = days.find(day=>day.name===state.day);
-    day.spots += 1;
+    const dayIndex = days.findIndex(day=>day.name===state.day);
+    
+   
+     days[dayIndex].appointments.forEach(appointmentId=>
+        {
+        if(!appointments[appointmentId].interview){
+          spotsCount += 1;
+        }
+        })
+        days[dayIndex].spots = spotsCount;
     
     return Axios.delete(`api/appointments/${id}`)
     .then((response)=>setState({...state,appointments,days}))
