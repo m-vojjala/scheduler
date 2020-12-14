@@ -45,8 +45,6 @@ const [state, setState] = useState({
     let spotsCount = 0;
     const days= [...state.days];
     const dayIndex = days.findIndex(day=>day.name===state.day);
-    
-   
      days[dayIndex].appointments.forEach(appointmentId=>
         {
         if(!appointments[appointmentId].interview){
@@ -60,7 +58,6 @@ const [state, setState] = useState({
   
   }
 
-  
   const setDay = day => setState({ ...state, day });
   // console.log(state.interviewers)
 
