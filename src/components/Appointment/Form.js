@@ -23,10 +23,10 @@ export default function Form(props){
   function onSave(event){
     event.preventDefault();
     if(name === ""){
-      console.log("Errorrrrrrrrr")
       setError("Student name cannot be blank");
       return;
     }
+    setError("");
     props.onSave(name, interviewer);
     reset();
   }
