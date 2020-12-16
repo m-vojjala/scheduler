@@ -22,8 +22,8 @@ export default function Form(props){
 
   function onSave(event){
     event.preventDefault();
-    if(name === ""){
-      setError("Student name cannot be blank");
+    if(name === "" || interviewer === null){
+      setError("Student name and interviewer cannot be blank");
       return;
     }
     setError("");
@@ -31,9 +31,6 @@ export default function Form(props){
     reset();
   }
 
-
-
-  // console.log(props)
   return <main className="appointment__card appointment__card--create">
   <section className="appointment__card-left">
     <form autoComplete="off">
