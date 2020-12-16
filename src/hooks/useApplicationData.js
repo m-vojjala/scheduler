@@ -1,5 +1,5 @@
 import  { useState, useEffect } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 export default function useApplicationData(){
 const [state, setState] = useState({
@@ -27,7 +27,7 @@ const [state, setState] = useState({
         }
         })
         days[dayIndex].spots = spotsCount;
-    return Axios.put(`api/appointments/${id}`, appointment)
+    return axios.put(`api/appointments/${id}`, appointment)
     .then((response)=>setState({...state,appointments,days}))
     
   }
@@ -53,7 +53,7 @@ const [state, setState] = useState({
         })
         days[dayIndex].spots = spotsCount;
     
-    return Axios.delete(`api/appointments/${id}`)
+    return axios.delete(`api/appointments/${id}`)
     .then((response)=>setState({...state,appointments,days}))
   
   }
@@ -62,9 +62,9 @@ const [state, setState] = useState({
   // console.log(state.interviewers)
 
   useEffect(() => {
-    Promise.all([Axios.get('api/days'),
-    Axios.get('api/appointments'),
-    Axios.get('api/interviewers')])
+    Promise.all([axios.get('api/days'),
+    axios.get('api/appointments'),
+    axios.get('api/interviewers')])
       .then((all) => {
         setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data,interviewers:all[2].data }));
       })
