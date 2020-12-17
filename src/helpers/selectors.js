@@ -9,7 +9,6 @@ export function getAppointmentsForDay(state, day) {
   for (let appointment in state.appointments) {
     if (ids.includes(Number(appointment))) {
       appointments.push(state.appointments[appointment]);
-
     }
   }
   return appointments;

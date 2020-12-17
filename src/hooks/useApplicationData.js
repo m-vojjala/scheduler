@@ -8,6 +8,8 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {}
   });
+
+  // to book an interview
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -30,6 +32,7 @@ export default function useApplicationData() {
       .then((response) => setState({ ...state, appointments, days }))
   }
 
+  // to destroy/delete an interview
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
