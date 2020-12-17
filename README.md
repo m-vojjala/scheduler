@@ -26,3 +26,8 @@ npm test
 ```sh
 npm run storybook
 ```
+## Screenshots
+
+!["Screenshot of appointment Form"](https://github.com/m-vojjala/scheduler/blob/master/docs/appointment_form.png?raw=true)
+!["Screenshot of initial display"](https://github.com/m-vojjala/scheduler/blob/master/docs/initial_display.png?raw=true)
+!["Screenshot of error occured while saving an appointment "](https://github.com/m-vojjala/scheduler/blob/master/docs/save_err.png?raw=true)
