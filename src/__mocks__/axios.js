@@ -63,7 +63,6 @@ export default {
         data: fixtures.days
       });
     }
-
     if (url === "api/appointments") {
       /* Resolve appointments data */
       return Promise.resolve({
@@ -72,7 +71,6 @@ export default {
         data: fixtures.appointments
       });
     }
-
     if (url === "api/interviewers") {
       /* Resolve interviewers data */
       return Promise.resolve({
@@ -82,16 +80,16 @@ export default {
       });
     }
   }),
-  put:jest.fn(url=>{
+  put: jest.fn(url => {
     return Promise.resolve({
       status: 204,
-      statusText:"No Content"
+      statusText: "No Content"
     })
   }),
-  delete:jest.fn(url=>{
+  delete: jest.fn(url => {
     return Promise.resolve({
       status: 204,
-      statusText:"No Content"
+      statusText: "No Content"
     })
   })
 }
